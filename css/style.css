@@ -153,4 +153,7 @@ button:active {
   .info_block{
     padding-top: 0;
   }
+  .btns{
+    padding-top: 20px;
+  }
 }
