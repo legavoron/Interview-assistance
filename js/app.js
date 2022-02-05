@@ -2,7 +2,10 @@ let question = document.querySelector('.pre_q');
 let answer = document.querySelector('.pre_a');
 let answerBtn = document.querySelector('.answer_btn');
 let nextQuestionBtn = document.querySelector('.quest_btn');
+let answerBlock = document.querySelector('.answer');
 let num= 0;
+let newImg;
+
 
 let arr = [
     {
@@ -21,7 +24,7 @@ let arr = [
 
     <html lang = 'en'>
     
-    Далее тег head. Он содержит в себе все необходимые данные о HTML странице (заголовок, описание, SEO информация, подключение стилей, шрифтов)
+    Далее тег head. Он содержит в себе все необходимые данные о HTML странице (заголовок, описание, SEO информация, подключение стилей,шрифтов)
 
     <head>
         <meta charset="utf-8">
@@ -68,8 +71,50 @@ let arr = [
     <strong></strong> - жирный текст с семантикой
 
     <ul></ul> - маркированный список и т.д.`
+    },
+    {
+        q: `Какая разница между тегами <strong>, <em> и <b>, <i>`,
+        a: `    <strong> и <em> предназначеныдля придания элементу логического выделения.
+        
+    При чтении страницы поисковыми роботами или screen- ридарами на этих элементах будет сделан акцент`
+    },
+    {
+        q: `Разница между call, apply и bind?`,
+        a: `    Из-за запутанности кода может случиться ситуация, когда контекст this будет ссылаться не на тот объект, что нам нужен.
+    
+    Мы можем сами задать, на какой объект будет ссылаться this в определенной функции.
+    
+    function showName(firstName, lastName) {
+        console.log(firstName + ' ' + lastName)
     }
     
+    const user = {
+        firstName: 'Ivan',
+        lastName: 'Petrov'
+    }
+    
+    Теперь указываем, для функции showName, что this внутри нее должен ссылаться на объукт user.
+    
+    Для этого есть 3 способа:
+    
+    call
+    
+    showName.call(user, 'firstName', 'lastName) - функция showName сразу же вызовется и отработает
+    
+    apply
+
+    showName.apply(user, ['firstName', 'lastName]) - функция showName сразу же вызовется и отработает
+
+    В call параметры функции записываются через запятые, ихможет быть сколько угодно.
+    А в apply может быть только два параметра. Поэтому первый параметр - это всегда объект, а остальные параметры просто записываются внутри массива.
+
+    bind
+
+    showName.bind(user, 'firstName', 'lastName)()
+
+    Параметры также как и в call записфваются через запятую. Но bind не вызывается сразу. Т.е. мы можем передать контекст, а функцию уже вызвать тогда, когда нам это нужно. Либо, если нужно сразу вызвать, то в конце указываем скобки ()`,
+    i: 'a'
+    }
 
 ];
 
@@ -79,19 +124,58 @@ function searchQuestion() {
     num = Math.floor(Math.random() * arr.length);
     if(arr[num] === null) {
         searchQuestion();
+    } else {
+        question.innerText = arr[num].q;
+        // question.innerText = arr[4].q;
+        console.log(arr[num]);
+
+        answerBtn.addEventListener('click', showAnswer);
+
+        nextQuestionBtn.addEventListener('click', next);
     }
-    question.innerHTML = arr[num].q;
-
-    answerBtn.addEventListener('click', showAnswer);
-
     
 }
 
-
-function showAnswer () {
+function showAnswer() {
     answer.innerText = arr[num].a;
+    // answer.innerText = arr[4].a;
+    if (arr[num].hasOwnProperty('i')) {
+        newImg = document.createElement('img');
+        newImg.src = `./img/${arr[4].i}.jpg`;
+        newImg.style.cssText = 'width: 100%; object-fit: contain; margin: 0 auto; padding-top: 10px';
+        
+        answerBlock.append(newImg);
+        
+        
+    }
+    arr[num] = null;
+    console.log(arr);
 }
 
-function hideAnswer() {
-    answer.innerHTML = '';
+function next() {
+    arr[num] = null;
+    answer.innerText = '';
+    // answerBlock.remove(newImg);
+    let str = document.createElement('span');
+    str.style.cssText = 'width: 100%; height: 100%';
+    if (newImg) {
+        newImg.replaceWith(str);
+    }
+    // newImg.remove();
+    // let flag = arr.some((elem)=> {
+    //     return elem !== null;
+    // });
+    // if( flag === false) {
+    //     searchQuestion();
+    // } else {
+    //     clear();
+    // }
+    searchQuestion();
+    
 }
+
+function clear() {
+    question.innerText = '';
+    answer.innerText = '';
+}
+
