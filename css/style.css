@@ -162,11 +162,14 @@ button:active {
   
 }
 @media (max-width: 400px) {
-  body{
-    height: 99vh;
+  #cont_1{
+    height: 40%;
+  }
+  #cont_2{
+    height: 60%;
   }
   pre{
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
   .info_block{
     padding-top: 0;
@@ -179,5 +182,11 @@ button:active {
     height: 100%;
     margin: 0;
     text-align: left;
+  }
+  body{
+    overflow: hidden;
+  }
+  .main{
+    overflow: hidden;
   }
 }
