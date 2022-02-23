@@ -36,6 +36,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 .block{
   width: 100%;
@@ -65,6 +66,9 @@ pre{
   font-family: 'Press Start 2P', cursive;
   font-family: 'PT Sans', sans-serif;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .pre_q{
   vertical-align: middle;
@@ -156,6 +160,9 @@ button:active {
   }
 }
 @media (max-width: 500px) {
+  .info_block{
+    padding-top: 10px;
+  }
   button{
     font-size: 5vw;
   }
@@ -163,10 +170,12 @@ button:active {
     font-size: 1.2em;
   }
   #cont_1{
-    height: 30%;
+    height: 20%;
   }
   #cont_2{
-    height: 60%;
+    height: 80%;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 @media(max-height: 500px) {
@@ -188,9 +197,12 @@ button:active {
     font-size: 1em;
   }
   #cont_1{
-    height: 30%;
+    height: 20%;
   }
   #cont_2{
-    height: 60%;
+    height: 70%;
+  }
+  .pre_a{
+    font-size: 1em;
   }
 }
