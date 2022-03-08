@@ -167,7 +167,10 @@ button:active {
     font-size: 5vw;
   }
   pre{
-    font-size: 1.2em;
+    font-size: 1em;
+  }
+  .pre_a{
+    font-size: 1em;
   }
   #cont_1{
     height: 20%;
